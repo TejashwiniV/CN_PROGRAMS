@@ -65,23 +65,10 @@ int main(int argc, char* argv[])
 	serverApps1.Start(Seconds(1.0));
 	serverApps1.Stop(Seconds(10.0));
 
-	UdpEchoClientHelpAt time 2s client sent 1024 bytes to 10.1.1.2 port 9
-At time 2s client sent 512 bytes to 10.1.2.1 port 10
-At time 2.00162s server received 512 bytes from 10.1.2.2 port 49153
-At time 2.00162s server sent 512 bytes to 10.1.2.2 port 49153
-At time 2.00324s client received 512 bytes from 10.1.2.1 port 10
-At time 2.00369s server received 1024 bytes from 10.1.1.1 port 49153
-At time 2.00369s server sent 1024 bytes to 10.1.1.1 port 49153
-At time 2.00737s client received 1024 bytes from 10.1.1.2 port 9
-At time 4s client sent 512 bytes to 10.1.2.1 port 10
-At time 4.00162s server received 512 bytes from 10.1.2.2 port 49153
-At time 4.00162s server sent 512 bytes to 10.1.2.2 port 49153
-At time 4.00324s client received 512 bytes from 10.1.2.1 port 10
-er echoClient1(interfaces1.GetAddress(0),10);
+	UdpEchoClientHelper echoClient1(interfaces1.GetAddress(0),10);
 	echoClient1.SetAttribute("MaxPackets",UintegerValue(2));
 	echoClient1.SetAttribute("Interval",TimeValue(Seconds(2.0)));
 	echoClient1.SetAttribute("PacketSize",UintegerValue(512));
-
 
 	ApplicationContainer clientApps1=echoClient1.Install(nodes1.Get(1));
 	clientApps1.Start(Seconds(2.0));
